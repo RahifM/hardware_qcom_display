@@ -1,3 +1,4 @@
+ifeq ($(TARGET_QCOM_DISPLAY_VARIANT),caf-msm8916)
 display-hals := include libgralloc libgenlock libcopybit
 display-hals += libhwcomposer liboverlay libqdutils libhdmi libqservice
 display-hals += libmemtrack
