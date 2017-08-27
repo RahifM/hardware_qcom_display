@@ -154,8 +154,8 @@ int getMdpFormat(int format, bool tileEnabled)
             return MDP_RGBA_8888_TILE;
         case HAL_PIXEL_FORMAT_RGBX_8888:
             return MDP_RGBX_8888_TILE;
-        case HAL_PIXEL_FORMAT_RGB_565:
-            return MDP_RGB_565_TILE;
+  //      case HAL_PIXEL_FORMAT_RGB_565:
+//            return MDP_RGB_565_TILE;
         case HAL_PIXEL_FORMAT_BGRA_8888:
             return MDP_BGRA_8888_TILE;
         case HAL_PIXEL_FORMAT_BGRX_8888:
