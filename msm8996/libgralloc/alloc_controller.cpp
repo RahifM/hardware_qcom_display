@@ -733,16 +733,16 @@ void getYuvUbwcSPPlaneInfo(uint64_t base, int width, int height,
     unsigned int c_meta_stride, c_meta_height, c_meta_size;
     unsigned int alignment = 4096;
 
-    y_meta_stride = VENUS_Y_META_STRIDE(color_format, width);
-    y_meta_height = VENUS_Y_META_SCANLINES(color_format, height);
+    y_meta_stride = (color_format, width);
+    y_meta_height = (color_format, height);
     y_meta_size = ALIGN((y_meta_stride * y_meta_height), alignment);
 
     y_stride = VENUS_Y_STRIDE(color_format, width);
     y_height = VENUS_Y_SCANLINES(color_format, height);
     y_size = ALIGN((y_stride * y_height), alignment);
 
-    c_meta_stride = VENUS_UV_META_STRIDE(color_format, width);
-    c_meta_height = VENUS_UV_META_SCANLINES(color_format, height);
+    c_meta_stride = (color_format, width);
+    c_meta_height = (color_format, height);
     c_meta_size = ALIGN((c_meta_stride * c_meta_height), alignment);
 
     ycbcr->y  = (void*)(base + y_meta_size);
@@ -750,7 +750,7 @@ void getYuvUbwcSPPlaneInfo(uint64_t base, int width, int height,
     ycbcr->cr = (void*)(base + y_meta_size + y_size +
                         c_meta_size + 1);
     ycbcr->ystride = y_stride;
-    ycbcr->cstride = VENUS_UV_STRIDE(color_format, width);
+    ycbcr->cstride = (color_format, width);
 }
 
 void getYuvSPPlaneInfo(uint64_t base, int width, int height, int bpp,
@@ -812,14 +812,12 @@ int getYUVPlaneInfo(private_handle_t* hnd, struct android_ycbcr* ycbcr)
         break;
 
         case HAL_PIXEL_FORMAT_YCbCr_420_SP_VENUS_UBWC:
-            getYuvUbwcSPPlaneInfo(hnd->base, width, height,
-                                  COLOR_FMT_NV12_UBWC, ycbcr);
+            (hnd->base, width, height, ycbcr);
             ycbcr->chroma_step = 2;
         break;
 
         case HAL_PIXEL_FORMAT_YCbCr_420_TP10_UBWC:
-            getYuvUbwcSPPlaneInfo(hnd->base, width, height,
-                                  COLOR_FMT_NV12_BPP10_UBWC, ycbcr);
+            (hnd->base, width, height, ycbcr);
             ycbcr->chroma_step = 3;
         break;
 
