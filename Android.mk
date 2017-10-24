@@ -1,5 +1,3 @@
-ifeq ($(call my-dir),$(call project-path-for,qcom-display))
-
 sdm-libs := sdm/libs
 display-hals := include libqservice libqdutils $(sdm-libs)/utils $(sdm-libs)/core
 
@@ -24,6 +22,4 @@ else
 ifneq ($(filter msm% apq%,$(TARGET_BOARD_PLATFORM)),)
     include $(call all-named-subdir-makefiles,$(display-hals))
 endif
-endif
-
 endif
