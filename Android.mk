@@ -1,6 +1,6 @@
 ifeq ($(TARGET_QCOM_DISPLAY_VARIANT),caf-msm8916)
 display-hals := include libgralloc libgenlock libcopybit
-display-hals += libhwcomposer liboverlay libqdutils libhdmi libqservice
+display-hals += libhwcomposer liboverlay libqdutils libhdmi libqservice liblight
 display-hals += libmemtrack
 ifeq ($(call is-vendor-board-platform,QCOM),true)
     include $(call all-named-subdir-makefiles,$(display-hals))
