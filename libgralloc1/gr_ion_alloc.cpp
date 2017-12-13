@@ -37,6 +37,7 @@
 #include <cutils/log.h>
 #include <errno.h>
 #include <utils/Trace.h>
+#include <string>
 
 #include "gralloc_priv.h"
 #include "gr_utils.h"
