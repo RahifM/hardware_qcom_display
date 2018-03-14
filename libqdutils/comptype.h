@@ -30,6 +30,7 @@
 #ifndef INCLUDE_LIBQCOM_COMPTYPES
 #define INCLUDE_LIBQCOM_COMPTYPES
 
+#include <string.h>
 #include <stdint.h>
 #include <utils/Singleton.h>
 #include <cutils/properties.h>

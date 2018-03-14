@@ -33,7 +33,7 @@
 #include <sys/mman.h>
 #include <stdlib.h>
 #include <fcntl.h>
-
+#include <string.h>
 #ifdef _ANDROID_
 #include <cutils/log.h>
 #else
