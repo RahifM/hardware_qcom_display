@@ -21,7 +21,11 @@
 #define __GRALLOC_PRIV_H__
 
 #include <unistd.h>
+
+#include "QtiGrallocDefs.h"
 #include "gr_priv_handle.h"
+
+#pragma message "Warning: gralloc_priv.h is deprecated"
 
 #define GRALLOC_PROP_PREFIX  "vendor.gralloc."
 #define GRALLOC_PROP(prop_name) GRALLOC_PROP_PREFIX prop_name
@@ -35,6 +39,7 @@ inline int roundUpToPageSize(int x) {
     return (x + (getpagesize()-1)) & ~(getpagesize()-1);
 }
 
+<<<<<<< HEAD
 /* Gralloc usage bits indicating the type of allocation that should be used */
 /* Refer gralloc1_producer_usage_t & gralloc1_consumer_usage-t in gralloc1.h */
 
@@ -78,6 +83,9 @@ inline int roundUpToPageSize(int x) {
 
 
 /* Legacy gralloc0.x definitions */
+=======
+/* Legacy gralloc1 definitions */
+>>>>>>> a069a7e2... display: Update metadata
 /* Some clients may still be using the old flags */
 #define GRALLOC_USAGE_PRIVATE_ALLOC_UBWC GRALLOC1_PRODUCER_USAGE_PRIVATE_ALLOC_UBWC
 #define GRALLOC_USAGE_PRIVATE_UNCACHED GRALLOC1_PRODUCER_USAGE_PRIVATE_UNCACHED
@@ -114,6 +122,7 @@ inline int roundUpToPageSize(int x) {
 #define GRALLOC1_MODULE_PERFORM_ALLOCATE_BUFFER 15
 #define GRALLOC1_MODULE_PERFORM_GET_INTERLACE_FLAG 16
 
+<<<<<<< HEAD
 // OEM specific HAL formats
 #define HAL_PIXEL_FORMAT_RGBA_5551 6
 #define HAL_PIXEL_FORMAT_RGBA_4444 7
@@ -191,6 +200,8 @@ inline int roundUpToPageSize(int x) {
 #define HAL_PIXEL_FORMAT_COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR 0x93DC
 #define HAL_PIXEL_FORMAT_COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR 0x93DD
 
+=======
+>>>>>>> a069a7e2... display: Update metadata
 /* possible values for inverse gamma correction */
 #define HAL_IGC_NOT_SPECIFIED 0
 #define HAL_IGC_s_RGB 1
@@ -211,6 +222,15 @@ enum {
   HAL_3D_IN_SIDE_BY_SIDE_L_R = 0x10000,  // unused legacy format
 };
 
+<<<<<<< HEAD
 enum { BUFFER_TYPE_UI = 0, BUFFER_TYPE_VIDEO };
+=======
+/* Flag to determine interlaced content
+ * Value maps to Flags presents in types.hal of QtiMapperextensions
+ */
+enum {
+  LAYOUT_INTERLACED_FLAG = 1 << 0,
+};
+>>>>>>> a069a7e2... display: Update metadata
 
 #endif  // __GRALLOC_PRIV_H__

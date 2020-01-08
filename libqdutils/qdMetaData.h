@@ -30,12 +30,18 @@
 #ifndef _QDMETADATA_H
 #define _QDMETADATA_H
 
+#include <QtiGrallocMetadata.h>
 #include <color_metadata.h>
 
+/* TODO: This conditional include is to prevent breaking video and camera test cases using
+ * MetaData_t - camxchinodedewarp.cpp, vtest_EncoderFileSource.cpp
+ */
+
 #ifdef __cplusplus
-extern "C" {
+#include <QtiGrallocPriv.h>
 #endif
 
+<<<<<<< HEAD:libqdutils/qdMetaData.h
 #define MAX_UBWC_STATS_LENGTH 32
 
 enum ColorSpace_t{
@@ -134,6 +140,29 @@ struct MetaData_t {
      * [1] : Bottom field, if it is interlaced.
      */
     struct UBWCStats ubwcCRStats[2];
+=======
+#ifndef __QTI_DISPLAY_GRALLOC__
+#pragma message "qdMetaData.h is being deprecated"
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+struct MetaData_t;
+
+enum ColorSpace_t {
+  ITU_R_601,
+  ITU_R_601_FR,
+  ITU_R_709,
+  ITU_R_2020,
+  ITU_R_2020_FR,
+};
+
+struct BufferDim_t {
+  int32_t sliceWidth;
+  int32_t sliceHeight;
+>>>>>>> a069a7e2... display: Update metadata:libqdmetadata/qdMetaData.h
 };
 
 enum DispParamType {
@@ -170,6 +199,9 @@ enum DispFetchParamType {
     GET_SINGLE_BUFFER_MODE   = 0x4000,
     GET_S3D_COMP             = 0x8000,
 };
+
+/* Frame type bit mask */
+#define QD_SYNC_FRAME (0x1 << 0)
 
 struct private_handle_t;
 int setMetaData(struct private_handle_t *handle, enum DispParamType paramType,

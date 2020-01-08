@@ -27,13 +27,16 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "qdMetaData.h"
+
+#include <QtiGrallocPriv.h>
 #include <errno.h>
+#include <gralloc_priv.h>
+#include <log/log.h>
 #include <string.h>
 #include <sys/mman.h>
-#include <log/log.h>
+
 #include <cinttypes>
-#include <gralloc_priv.h>
-#include "qdMetaData.h"
 
 unsigned long getMetaDataSize() {
     return static_cast<unsigned long>(ROUND_UP_PAGESIZE(sizeof(MetaData_t)));
@@ -90,9 +93,11 @@ int setMetaDataVa(MetaData_t *data, DispParamType paramType,
         case PP_PARAM_INTERLACED:
             data->interlaced = *((int32_t *)param);
             break;
-        case UPDATE_BUFFER_GEOMETRY:
-            data->bufferDim = *((BufferDim_t *)param);
-            break;
+        case UPDATE_BUFFER_GEOMETRY: {
+          BufferDim_t in = *((BufferDim_t *)param);
+          data->crop = {0, 0, in.sliceWidth, in.sliceHeight};
+          break;
+        }
         case UPDATE_REFRESH_RATE:
             data->refreshrate = *((float *)param);
             break;
@@ -179,8 +184,8 @@ int getMetaDataVa(MetaData_t *data, DispFetchParamType paramType,
             break;
         case GET_BUFFER_GEOMETRY:
             if (data->operation & UPDATE_BUFFER_GEOMETRY) {
-                *((BufferDim_t *)param) = data->bufferDim;
-                ret = 0;
+              *((BufferDim_t *)param) = {data->crop.right, data->crop.bottom};
+              ret = 0;
             }
             break;
         case GET_REFRESH_RATE:
